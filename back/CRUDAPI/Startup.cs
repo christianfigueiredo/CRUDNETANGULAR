@@ -18,7 +18,7 @@ namespace CRUDAPI
         public void ConfigureServices(IServiceCollection services)
         {   
             services.AddScoped<Contexto>();         
-            services.AddControllers();
+            services.AddControllers();           
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
