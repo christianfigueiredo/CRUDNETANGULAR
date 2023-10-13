@@ -12,6 +12,5 @@ namespace CRUDAPI.Models
         public string Sobrenome { get; set; }
         public int  Idade { get; set; }
         public string Profissao { get; set; }
-
     }
 }
