@@ -10,8 +10,13 @@ namespace CRUDAPI.Models
     {
         public DbSet<Pessoa> Pessoas { get; set; }
 
-        public Contexto(DbContextOptions<Contexto> opcoes) : base(opcoes)
-        {  
-        }       
+       protected override void OnConfiguring(DbContextOptionsBuilder options)
+ {
+     if(!options.IsConfigured)
+     {
+         var conexaoStr = "server=localhost;port=3306;database=crudDB;uid=root;password=123456;Persist Security Info=false;Connect Timeout=300";
+         options.UseMySql(conexaoStr, ServerVersion.AutoDetect(conexaoStr));
+     }           
+ }   
     }
 }
