@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +11,8 @@ using Microsoft.Extensions.Logging;
 namespace CRUDAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class PessoasController : Controller
+    [Route("[controller]")]
+    public class PessoasController : ControllerBase
     {
         private readonly Contexto _contexto;
 
@@ -27,10 +27,10 @@ namespace CRUDAPI.Controllers
            return await _contexto.Pessoas.ToListAsync();
         }   
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Pessoa>> PegarPorIdAsync(int id)
+        [HttpGet("{pessoaId}")]
+        public async Task<ActionResult<Pessoa>> PegarPorIdAsync(int pessoaId)
         {
-            var pessoa = await _contexto.Pessoas.FindAsync(id);
+            var pessoa = await _contexto.Pessoas.FindAsync(pessoaId);
             if (pessoa == null)
             {
                 return NotFound();                
