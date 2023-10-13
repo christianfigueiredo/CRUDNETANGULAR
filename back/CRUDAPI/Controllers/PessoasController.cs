@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace CRUDAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PessoasController : ControllerBase
     {
         private readonly Contexto _contexto;
@@ -60,12 +60,12 @@ namespace CRUDAPI.Controllers
         {
             Pessoa pessoa = await _contexto.Pessoas.FindAsync(id);
             if (pessoa == null)
-            {
+            {                
                 return NotFound();
             }
             _contexto.Pessoas.Remove(pessoa);
             await _contexto.SaveChangesAsync();
-            return Ok();
+            return Ok();            
         }        
     }
 }
